@@ -1,0 +1,80 @@
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] mod_python (pid=4018, interpreter='ldev.monkey.dev', phase='PythonHandler', handler='django.core.handlers.modpython'): Application error
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] ServerName: 'ldev.monkey.dev'
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] DocumentRoot: '/var/www/monkey'
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] URI: '/monkey'
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] Location: '/monkey'
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] Directory: None
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] Filename: '/var/www/monkey/monkey'
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] PathInfo: ''
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1537, in HandlerDispatch\n    default=default_handler, arg=req, silent=hlist.silent)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1229, in _process_target\n    result = _execute_target(config, req, object, arg)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1128, in _execute_target\n    result = object(arg)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 212, in handler\n    return ModPythonHandler()(req)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 190, in __call__\n    response = self.get_response(request)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 169, in get_response\n    response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 214, in handle_uncaught_exception\n    if resolver.urlconf_module is None:
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 274, in _get_urlconf_module\n    self._urlconf_module = import_module(self.urlconf_name)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module\n    __import__(name)
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/var/www/monkey/urls.py", line 10, in <module>\n    from monkey.apps.admin import views as av
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1]   File "/var/www/monkey/apps/admin/views.py", line 19, in <module>\n    from settings import EMAIL_HOST_USER
+[Mon Mar 19 21:25:56 2012] [error] [client 127.0.0.1] ImportError: No module named settings
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] mod_python (pid=4143, interpreter='ldev.monkey.dev', phase='PythonHandler', handler='django.core.handlers.modpython'): Application error
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] ServerName: 'ldev.monkey.dev'
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] DocumentRoot: '/var/www/monkey'
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] URI: '/monkey'
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] Location: '/monkey'
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] Directory: None
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] Filename: '/var/www/monkey/monkey'
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] PathInfo: ''
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1537, in HandlerDispatch\n    default=default_handler, arg=req, silent=hlist.silent)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1229, in _process_target\n    result = _execute_target(config, req, object, arg)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1128, in _execute_target\n    result = object(arg)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 212, in handler\n    return ModPythonHandler()(req)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 190, in __call__\n    response = self.get_response(request)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 169, in get_response\n    response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 214, in handle_uncaught_exception\n    if resolver.urlconf_module is None:
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 274, in _get_urlconf_module\n    self._urlconf_module = import_module(self.urlconf_name)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module\n    __import__(name)
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/var/www/monkey/urls.py", line 10, in <module>\n    from monkey.apps.admin import views as av
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1]   File "/var/www/monkey/apps/admin/views.py", line 19, in <module>\n    from settings import EMAIL_HOST_USER
+[Mon Mar 19 21:29:41 2012] [error] [client 127.0.0.1] ImportError: No module named settings
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] mod_python (pid=4222, interpreter='ldev.monkey.dev', phase='PythonHandler', handler='django.core.handlers.modpython'): Application error
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] ServerName: 'ldev.monkey.dev'
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] DocumentRoot: '/var/www/monkey'
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] URI: '/monkey'
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] Location: '/monkey'
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] Directory: None
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] Filename: '/var/www/monkey/monkey'
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] PathInfo: ''
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1537, in HandlerDispatch\n    default=default_handler, arg=req, silent=hlist.silent)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1229, in _process_target\n    result = _execute_target(config, req, object, arg)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1128, in _execute_target\n    result = object(arg)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 212, in handler\n    return ModPythonHandler()(req)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 190, in __call__\n    response = self.get_response(request)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 169, in get_response\n    response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 214, in handle_uncaught_exception\n    if resolver.urlconf_module is None:
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 274, in _get_urlconf_module\n    self._urlconf_module = import_module(self.urlconf_name)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module\n    __import__(name)
+[Tue Mar 20 10:30:44 2012] [error] [client 127.0.0.1] ImportError: No module named monkey.urls
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] mod_python (pid=4223, interpreter='ldev.monkey.dev', phase='PythonHandler', handler='django.core.handlers.modpython'): Application error
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] ServerName: 'ldev.monkey.dev'
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] DocumentRoot: '/var/www/monkey'
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] URI: '/monkey'
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] Location: '/monkey'
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] Directory: None
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] Filename: '/var/www/monkey/monkey'
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] PathInfo: ''
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] Traceback (most recent call last):
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1537, in HandlerDispatch\n    default=default_handler, arg=req, silent=hlist.silent)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1229, in _process_target\n    result = _execute_target(config, req, object, arg)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/lib/python2.7/dist-packages/mod_python/importer.py", line 1128, in _execute_target\n    result = object(arg)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 212, in handler\n    return ModPythonHandler()(req)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/modpython.py", line 190, in __call__\n    response = self.get_response(request)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 169, in get_response\n    response = self.handle_uncaught_exception(request, resolver, sys.exc_info())
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 214, in handle_uncaught_exception\n    if resolver.urlconf_module is None:
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 274, in _get_urlconf_module\n    self._urlconf_module = import_module(self.urlconf_name)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1]   File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module\n    __import__(name)
+[Mon Mar 19 21:30:45 2012] [error] [client 127.0.0.1] ImportError: No module named monkey.urls

@@ -1,0 +1,61 @@
+## -*- coding:utf-8 -*-
+<!DOCTYPE html>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Simpla Admin | Sign In</title>
+		<link rel="stylesheet" href="/static/admin/css/reset.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/static/admin/css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/static/admin/css/invalid.css" type="text/css" media="screen" />	
+		<script type="text/javascript" src="/static/admin/js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="/static/admin/js/simpla.jquery.configuration.js"></script>
+		<script type="text/javascript" src="/static/admin/js/facebox.js"></script>
+		<script type="text/javascript" src="/static/admin/js/jquery.wysiwyg.js"></script>
+		<!--[if IE 6]>
+			<script type="text/javascript" src="/static/admin/js/DD_belatedPNG.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+	</head>
+  
+	<body id="login">
+		<div id="login-wrapper" class="png_bg">
+			<div id="login-top">
+				<h1>Monkey Admin</h1>
+				<!--<img id="logo" src="/static/admin/img/logo.png" alt="Simpla Admin logo" />-->
+			</div>
+			
+			<div id="login-content">
+				<form action="/login/" method="post">
+					% if utips:
+					<div class="notification information png_bg">
+						<div>
+							${utips}
+						</div>
+					</div>
+					% endif
+					<p>
+						<label for="lusm">用户名：</label>
+						<input class="text-input" type="text" id="lusm" name="username" />
+					</p>
+					<div class="clear"></div>
+					<p>
+						<label for="lpwd">密码：</label>
+						<input class="text-input" type="password" id="lpwd" name="password" />
+					</p>
+					<div class="clear"></div>
+					<!--
+					   -<p id="remember-password">
+					   -    <input type="checkbox" id="rpwd" /><label for="rpwd">记住我</label>
+					   -</p>
+					   -->
+					<div class="clear"></div>
+					<p>
+						<input class="button" type="submit" value="登 录" />
+					</p>
+				</form>
+			</div>
+		</div>
+  </body>
+  </html>

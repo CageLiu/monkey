@@ -1,0 +1,27 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<%
+ from monkey.apps.admin import models as am
+ groups = am.Group.objects.all()
+%>
+ % if gid:
+ 	asd
+ %else:
+ %for item in groups:
+ <p>${item}</p>
+ ${len(item.user_set.all())}
+ %endfor
+ <a href="/group/${len(groups) + 1}" class="add-user-btn">asdasd</a>
+ %endif
+
+
+</%def>

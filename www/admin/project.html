@@ -1,0 +1,72 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<%
+	from monkey.apps.admin import models as am
+	projects = am.Project.objects.all()
+	user = am.User.objects.get(usm = request.session.get('username'))
+%>
+<div style='margin-left:150px;'>
+	<ul class="member-list">
+		%for item in projects:
+			%if project.id == item.id:
+				<li><a href="/project/${item.id}" style="text-decoration:underline;font-weight:bold;color:#f30">${item}</a></li>
+				%else:
+				<li><a href="/project/${item.id}">${item}</a></li>
+			%endif
+		%endfor
+	</ul>
+	<div class="member-details">
+		<p><strong>项目名称：</strong>${project.zhname}
+		%if (user.group.access < 3) and (project.enname != 'base'):
+			<a href="/addproject/${project.id}" style="margin-left:10px;">编辑</a>
+		%elif user.group.access == 1 and project.enname == 'base':
+			<a href="/addproject/${project.id}" style="margin-left:10px;">编辑</a>
+		% endif
+		</p>
+		<p><strong>文件夹名：</strong>${project.enname}</p>
+		<p><strong>状态：</strong>${project.status.local_zh}</p>
+		<p><strong>开始时间：</strong>${project.starttime}</p>
+		<p><strong>项目周期：</strong>${project.period}</p>
+		<p><strong>负责人：</strong>${project.manager}</p>
+		<p><strong>成员：</strong><span style="display:block;margin-top:-19px">
+			%for u in project.member.all():
+				% if u.group.access == 2:
+					<a href="/user/${u.id}" style="width:100px;display:inline-block">${u}(${u.group})</a>  
+					<span>模块页：</span><a href="/view/${project.enname}/_${u.usm}">_${u.usm}.html</a><br/> 
+				% endif
+			%endfor
+			<span style="padding-left:112px">聚合页：</span><a href="/view/${project.enname}/_merge">_merge.html</a>
+			</span>
+		</p>
+		<p><strong>简要说明：</strong>${project.title}</p>
+		<div class="file_list">
+			<p><strong>页面列表：</strong><span style="display:block;margin-top:-19px">
+			%for item in htmlfiles:
+			<a style="display:block" href="/view/${project.enname}/${item.split('.')[0]}">http://${request.get_host()}/${item}</a>
+			%endfor
+			%if len(htmlfiles) == 0:
+				暂无页面
+			%endif
+		</span>
+			</p>
+		</div>
+		<p>
+			<strong>文件存放：</strong><span style="display:block;margin-top:-19px;font-size:14px;color:#5968b8;letter-spacing:1px">
+				<span style="padding-right:10px;font-weight:bold;width:48px;display:inline-block;text-align:right">HTML:</span>${htmldir}<br/>
+				<span style="padding-right:10px;font-weight:bold;width:48px;display:inline-block;text-align:right">CSS:</span>${cssdir}<br/>
+				<span style="padding-right:10px;font-weight:bold;width:48px;display:inline-block;text-align:right">JS:</span>${jsdir}<br/>
+				<span style="padding-right:10px;font-weight:bold;width:48px;display:inline-block;text-align:right">IMG:</span>${cssdir}
+			</span>
+		</p>
+	</div>
+</div>
+</%def>

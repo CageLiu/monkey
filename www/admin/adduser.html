@@ -1,0 +1,91 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<form action="" method="post">
+	<%
+		from monkey.apps.admin import models as am
+		groups = am.Group.objects.all()
+	%>
+	% if uid:
+		<h2>修改成员:<span style="color:#f30">${user.rename}</span></h2>
+		<fieldset>
+			<p>
+				<label>用户名：</label>
+				<input class="text-input small-input" type="text"  name="usm" readonly="true" value="${user.usm}" />
+				<br /><small>用户名不可更改</small>
+			</p>
+			<p>
+				<label>密码：</label>
+				<input class="text-input small-input" type="password"  name="pwd" readonly="true" value="${user.pwd}" />
+				<br /><small>密码请成员自行修改</small>
+			</p>
+			<p>
+				<label>真实姓名：</label>
+				<input class="text-input small-input" type="text"  name="rename" value="${user.rename}" />
+			</p>
+			<p>
+				<label>Email：</label>
+				<input class="text-input small-input" type="text"  name="email" value="${user.email}" />
+			</p>
+			<p>
+				<label>用户组：</label>              
+				<select name="group">
+					<option value="${user.group.id}">${user.group}</option>
+					% for item in groups:
+						%if not item.id == user.group.id:
+						<option value="${item.id}">${item.name}</option>
+						%endif
+					% endfor
+				</select>
+			</p>
+			<p>
+				<input class="button" type="submit" value="修改成员" />
+			</p>
+		</fieldset>
+	% else:
+		<h2>添加成员</h2>
+		<fieldset>
+			<p>
+				<label>用户名：</label>
+				<input class="text-input small-input" type="text"  name="usm"/>
+				<br /><small>在系统中是唯一的，提交后不可更改</small>
+			</p>
+			<p>
+				<label>密码：</label>
+				<input class="text-input small-input" type="password"  name="pwd"/>
+				<br /><small>这是初始密码，帐号开通后请用户自行更换</small>
+			</p>
+			<p>
+				<label>真实姓名：</label>
+				<input class="text-input small-input" type="text"  name="rename"/>
+				<br /><small>用户的真实姓名</small>
+			</p>
+			<p>
+				<label>Email：</label>
+				<input class="text-input small-input" type="text"  name="email"/>
+				<br /><small>用户邮箱，具有唯一性</small>
+			</p>
+			<p>
+				<label>用户组：</label>              
+				<select id="id_manager" name="group">
+					<option value="">-------</option>
+					% for item in groups:
+						<option value="${item.id}">${item.name}</option>
+					% endfor
+				</select>
+			</p>
+			<p>
+				<input class="button" type="submit" value="添加成员" />
+			</p>
+		</fieldset>
+	% endif
+</form>
+</%def>

@@ -1,0 +1,102 @@
+## -*- coding: utf-8 -*-
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			${self.title()}
+			<%def name="title()">
+				${u'Monkey Admin--前端项目管理系统'}
+			</%def>
+		</title>
+		<link rel="stylesheet" href="/static_url/admin/css/reset.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/static_url/admin/css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/static_url/admin/css/invalid.css" type="text/css" media="screen" />	
+		<script type="text/javascript" src="/static_url/admin/js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="/static_url/admin/js/simpla.jquery.configuration.js"></script>
+		<script type="text/javascript" src="/static_url/admin/js/facebox.js"></script>
+		<script type="text/javascript" src="/static_url/admin/js/jquery.wysiwyg.js"></script>
+		<!--
+		   -<script type="text/javascript" src="/static/admin/js/jquery.datePicker.js"></script>
+		   -<script type="text/javascript" src="/static/admin/js/jquery.date.js"></script>
+		   -->
+		<!--[if IE 6]>
+			<script type="text/javascript" src="/static/admin/js/DD_belatedPNG.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+		${self.outfile()}
+	</head>
+
+	<body>
+	
+		<%
+			from monkey.apps.admin import models as am
+			user = request.session['username']
+			id = am.User.objects.get(usm = user).id
+			gid = am.User.objects.get(usm = user).group
+			rename = am.User.objects.get(usm = user).rename
+		%>
+		<div id="body-wrapper">
+			<div id="sidebar">
+				<div id="sidebar-wrapper">
+					<h1 id="sidebar-title"><a href="#">Monkey Admin</a></h1>
+					<!--<a href="#"><img id="logo" src="/static/admin/img/logo.png" alt="Simpla Admin logo" /></a>-->
+					<div id="profile-links">
+						Hello, 
+						<a href="/user/${id}/">${rename}</a>
+						<p>
+						<a href="/user/${id}/">我的工作台</a> |
+							<a href="/logout/">退出</a>
+						</p>
+					</div>        
+					<ul id="main-nav">
+						<li><a href="/index/" class="nav-top-item no-submenu">首页</a></li>
+						<li> 
+							<a href="#" class="nav-top-item">项目管理</a>
+							<ul>
+								<li><a href="/project/">项目列表</a></li>
+								% if gid.access < 3:
+								<li><a href="/addproject/">新建 / 修改项目</a></li>
+								% endif
+							</ul>
+						</li>
+						% if gid.access == 1:
+						<li>
+							<a href="#" class="nav-top-item">系统管理</a>
+							<ul>
+								<li><a href="/user/">成员列表</a></li>
+								<li><a href="/adduser/">新增 / 修改成员</a></li>
+								<li><a href="/group/">用户组</a></li>
+							</ul>
+						</li>
+						% endif
+						${self.sideitem()}
+					</ul>
+				</div>
+			</div>
+			<div id="main-content">
+				${self.main()}
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			var oSubmenu = $("#main-nav a");
+			local_href = window.location.href;
+			reg = /\//g;
+			for(var menu = 0; menu < oSubmenu.length; menu++){
+				//生成正则字符串
+				href = '\\b' + $(oSubmenu[menu]).attr("href").replace(reg,'') + "\\b";
+				treg = new RegExp(href)
+				//如果url中包含当前项的url，则添加相应样式
+				if (treg.test(local_href)){
+					$(oSubmenu[menu]).addClass("current")
+					$(oSubmenu[menu]).parent().parent().css('display','block')
+					$(oSubmenu[menu]).parent().parent().siblings('a').addClass("current")
+				}
+			}
+			})
+		</script>
+	</body>
+</html>

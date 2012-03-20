@@ -1,0 +1,44 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<%
+ from monkey.apps.admin import models as am
+ groups = am.Group.objects.all()
+ user = am.User.objects.get(usm = request.session.get('username'))
+%>
+<div class="content-box">
+	<div class="content-box-header">
+		<h3>用户组</h3>
+		% if user.group.access == 1:
+		<!--<a href="/group/${(len(groups) + 1)}" class="add-user-btn">添加用户组</a>-->
+		% endif
+		<span style="float:right;margin-top:10px;padding-right:10px;">共 <strong>${len(groups)}</strong> 个组</span>
+	</div>
+	<div class="content-box-content">
+		<table>
+			<thead>
+				<tr>
+					<th>组名</th>
+					<th>成员数</th>
+				</tr>
+			</thead>
+			<tbody>
+				% for item in groups:
+				<tr>
+					<td>${item}</td>
+					<td>${len(item.user_set.all())}</td>
+				</tr>
+				%endfor
+			</tbody>
+		</table>
+	</div>
+</div>
+</%def>

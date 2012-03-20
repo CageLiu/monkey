@@ -1,0 +1,166 @@
+/*lifanfan css file*/
+
+/* reset style start */
+html{
+	overflow-y:scroll;
+}
+body,ul,ol,p,dl,dd,form,textarea,h1,h2,h3,h4,fieldset,input{
+    margin:0;
+}
+
+ul,ol,input,button,td,th,fieldset{
+    padding:0;
+}
+ul,ol{
+    list-style-type:none;
+    list-style-position:outside;
+}
+a{
+    text-decoration:none;
+}
+a img,fieldset{
+    border:none;
+}
+fieldset legend{
+	display:none
+}
+a,input,button,textarea{
+	outline:none;
+}
+textarea{
+	resize:none
+}
+table{
+    border-collapse:collapse;
+    border-spacing:0;
+    /*table-layout:fixed;*/
+}
+em{
+    font-style:normal
+}
+.clear{
+    clear:both;
+}
+.clearfix{
+	zoom:1;
+}
+.clearfix:after{
+    content:'';
+    display:block;
+    clear:both;
+    height:0;
+    overflow:hidden;
+}
+body{
+	background:#fff;
+	color:#333;
+	font:12px/1.5 Tahoma,arial,宋体b8b\4f53;
+}
+/* reset style end */
+
+/* frameA style start */
+.a_wp{
+	margin-left:200px;
+	background:gray;
+	font-size:0;
+	letter-spacing:-5px;
+}
+.a_siderbox,.a_mainbox{
+	display:inline-block;
+	vertical-align:top;
+	font-size:12px;
+	letter-spacing:normal;
+	*display:inline;
+	zoom:1;
+}
+.a_siderbox{
+	width:200px;
+	background:#333;
+	margin-left:-200px;
+	color:#fff;
+}
+.a_mainbox{
+	width:100%;
+	background:blue;
+}
+/* frameA style end */
+
+/* frameB style start*/
+.b_wp{
+	position:relative;
+	left:-200px;
+	overflow:hidden;
+	font-size:0;
+	letter-spacing:-5px;
+	background:gray;
+}
+.b_siderbox,.b_mainbox{
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	vertical-align:top;
+	font-size:12px;
+	letter-spacing:normal;
+	color:#fff;
+	position:relative;
+	left:200px;
+	}
+.b_siderbox{
+	background-color:blue;
+}
+.b_mainbox{
+	background-color:red;
+}
+/* frameB style end*/
+
+/*三列布局css*/
+
+/* frameC style start*/
+.c_mainbox{
+	width:100%;
+	background:gray;
+}
+.c_content{
+	margin:0 310px 0 210px;
+	background-color:#369;
+}
+.c_mainbox,.c_firstsider,.c_secondsider{
+	float:left;
+	color:#fff;
+}
+.c_firstsider{
+	background-color:red;
+	width:200px;
+	margin-left:-100%;
+}
+.c_secondsider{
+	background-color:blue;
+	width:300px;
+	margin-left:-300px;
+}
+/* frameC style end*/
+
+/* frameD style start*/
+.d_mainbox{
+	width:100%;
+	background:gray;
+}
+.d_content{
+	margin:0 40% 0 210px;
+	background-color:#369;
+}
+.d_mainbox,.d_firstsider,.d_secondsider{
+	float:left;
+	color:#fff;
+}
+.d_firstsider{
+	background-color:red;
+	width:200px;
+	margin-left:-100%;
+}
+.d_secondsider{
+	background-color:blue;
+	width:40%;
+	margin-left:-40%;
+}
+/* frameD style end*/

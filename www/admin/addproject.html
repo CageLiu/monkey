@@ -1,0 +1,132 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+
+<form action="" method="post">
+	<%
+		from monkey.apps.admin import models as am
+		users = am.User.objects.all().order_by('group')
+		statuses = am.Status.objects.all()
+	%>
+	% if pid:
+	<h2>修改项目:<span style="color:#f30">${p.zhname}</span></h2>
+		<fieldset class="addform">
+			<p>
+				<label>英文名：</label>
+				<input class="text-input small-input" type="text" readonly="true"  name="enname" value="${p.enname}" />
+			</p>
+			<p>
+				<label>中文名：</label>
+				<input class="text-input small-input" type="text"  name="zhname" value="${p.zhname}" />
+			</p>
+			<p>
+				<label>简介：</label>
+				<textarea rows="8" cols="60" class="text-input textarea" name="title">${p.title}</textarea>
+			</p>
+			<p>
+				<label>状态：</label>
+				<select name="status">
+					<option value="${p.status.id}">${p.status.local_zh}</option>
+					% for item in statuses:
+						% if not item.id == p.status.id:
+							<option value="${item.id}">${item.local_zh}</option>
+						% endif
+					% endfor
+				</select>
+			</p>
+			<p>
+				<label>开始时间：</label>
+				<input class="text-input small-input" type="text"  name="starttime" value="${p.starttime}" />
+			</p>
+			<p>
+				<label>项目周期：</label>
+				<input class="text-input small-input" type="text"  name="period" value="${p.period}" /> 天
+			</p>
+			<p>
+				<label>负责人：</label>
+				<select name="manager">
+					<option value="${p.manager.id}">${p.manager}</option>
+					%for item in users:
+						%if not item.id == p.manager.id:
+						<option value="${item.id}">${item.rename}</option>
+						%endif
+					%endfor
+				</select>
+			</p>
+			<p>
+				<label>成员：</label>
+					%for item in users:
+						%if item in p.member.all():
+						<input type="checkbox" value="${item.id}" name="member" id="p_${item.usm}" checked class="add-form-checkbox" /><label class="inline" for="p_${item.usm}">${item.rename}</label>
+						%else:
+						<input type="checkbox" value="${item.id}" name="member" id="p_${item.usm}" class="add-form-checkbox" /><label class="inline" for="p_${item.usm}">${item.rename}</label>
+						%endif
+					%endfor
+			</p>
+			<p>
+				<input class="button" type="submit" value="修改项目" />
+			</p>
+		</fieldset>
+	% else:
+		<h2>新建项目</h2>
+		<fieldset class="addform">
+			<p>
+				<label>英文名：</label>
+				<input class="text-input small-input" type="text"  name="enname" />
+				<br /><small>一旦创建不可更改</small>
+			</p>
+			<p>
+				<label>中文名：</label>
+				<input class="text-input small-input" type="text"  name="zhname" />
+			</p>
+			<p>
+				<label>简介：</label>
+				<textarea rows="8" cols="60" class="text-input textarea" name="title"></textarea>
+			</p>
+			<p>
+				<label>状态：</label>
+				<select name="status">
+					<option value="">--------</option>
+					%for item in statuses:
+						<option value="${item.id}">${item.local_zh}</option>
+					% endfor
+				</select>
+			</p>
+			<p>
+				<label>开始时间：</label>
+				<input class="text-input small-input" type="text"  name="starttime"/>
+			</p>
+			<p>
+				<label>项目周期：</label>
+				<input class="text-input small-input" type="text"  name="period" /> 天
+			</p>
+			<p>
+				<label>负责人：</label>
+				<select name="manager">
+					<option value="">-------</option>
+					%for item in users:
+						<option value="${item.id}">${item.rename}</option>
+					%endfor
+				</select>
+			</p>
+			<p>
+				<label>成员：</label>
+					%for item in users:
+						<input type="checkbox" value="${item.id}" name="member" id="p_${item.usm}" class="add-form-checkbox" /><label class="inline" for="p_${item.usm}">${item.rename}</label>
+					%endfor
+			</p>
+			<p>
+				<input class="button" type="submit" value="新建项目" />
+			</p>
+		</fieldset>
+	% endif
+</form>
+</%def>

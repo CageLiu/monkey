@@ -1,0 +1,108 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<%
+	from monkey.apps.admin import models as am
+	groups = am.Group.objects.all()
+	gid = am.User.objects.get(usm = request.session.get("username")).group
+%>
+%if category == 'index':
+<div class="content-box">
+	<div class="content-box-header">
+		<h3>成员</h3>
+		% if gid.access == 1:
+			<a class="add-user-btn" href="/adduser/" title="添加">添加</a>
+		% endif
+		<span style="float:right;margin-top:10px;padding-right:10px;">共 <strong>${len(member)}</strong> 个成员</span>
+	</div>
+	<div class="content-box-content">
+		<div class="allmember">
+			% for item in member:
+			<a href="/user/${item.id}">${item}(${item.group})</a>
+			% endfor
+		</div>
+	</div>
+</div>
+%endif
+<div class="content-box">
+	<div class="content-box-header">
+		<span style="float:right;margin-top:10px;padding-right:10px;">共 <strong>${len(project)}</strong> 个项目</span>
+		<ul class="statustips">
+			<li class="nostart">未开始</li>
+			<li class="developing">开发中</li>
+			<li class="confirming">确认中</li>
+			<li class="reviseing">调整中</li>
+			<li class="over">已完毕</li>
+		</ul>
+		<h3>项目</h3>
+		%if gid.access < 3:
+		<a href="/addproject/" class="add-user-btn" title="添加项目">添加项目</a>
+		%endif
+		</ul>
+	</div>
+	<div class="content-box-content">
+		<div class="tab-content default-tab">
+			<table>
+				<thead>
+					<tr>
+					   <th>状态</th>
+					   <th>项目名称</th>
+					   <th>开始时间</th>
+					   <th>项目周期</th>
+					   <th>负责人</th>
+					   %if gid.access < 3:
+						   <th>操作</th>
+					   %endif
+					</tr>
+				</thead>
+				<tbody>
+					%if len(project) == 0:
+					<tr>
+						<td colspan="6">尚未创建项目</td>
+					</tr>
+					%else:
+					% for item in project:
+					<tr>
+						<td width="32px">
+							<div class="status ${item.status}" title="${item.status.local_zh}">${item.status.local_zh}</div>
+						</td>
+						<td class="alignl" width="35%">
+							<a href="/project/${item.id}" style="font-size:14px;font-weight:bold">${item.zhname}</a>
+							<div style="line-height:21px;color:#888">
+								${item.title}
+							</div>
+						</td>
+						<td>${item.starttime}</td>
+						<td>${item.period}天</td>
+						<td>
+							<a href="/user/${item.manager.id}/">${item.manager}</a>
+						</td>
+						%if gid.access < 3:
+						<td>
+							%if item.enname != 'base':
+							<a href="/addproject/${item.id}">编辑</a>
+							<a href="/delete/project/${item.id}/" style="color:#f00" onclick="if(!confirm('项目删除后相关数据无法恢复！确认删除项目 ${item.zhname}?')) return false">删除</a>
+							%elif gid.access == 1:
+							<a href="/addproject/${item.id}">编辑</a>
+							%else:
+							----
+							%endif
+						</td>
+						%endif
+					</tr>
+					%endfor
+					%endif
+				</tbody>
+			</table>
+		</div> 
+	</div>
+</div>
+</%def>

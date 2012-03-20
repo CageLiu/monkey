@@ -1,0 +1,53 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<div class="content-box">
+	<div class="content-box-header">
+		<span style="float:right;margin-top:10px;padding-right:10px;">共 <strong>${len(member)}</strong> 个成员</span>
+		<h3>成员</h3>
+		<a href="/adduser/" class="add-user-btn" title="添加成员" style="top:7px;">添加成员</a>
+	</div>
+	<div class="content-box-content">
+		<div class="tab-content default-tab">
+			<table>
+				<thead>
+					<tr>
+					   <th>真实姓名</th>
+					   <th>登录帐号</th>
+					   <th>Email</th>
+					   <th>用户组</th>
+					   <th>操作</th>
+					</tr>
+				</thead>
+				<tfoot>
+				</tfoot>
+				<tbody>
+					% for user in member:
+					<tr>
+						<td>
+							<a href="/user/${user.id}/">${user.rename}</a>
+						</td>
+						<td>${user.usm}</td>
+						<td>${user.email}</td>
+						<td>${user.group}</td>
+						<td>
+							<a href="/adduser/${user.id}">编辑</a>
+							<a href="/delete/user/${user.id}/" style="color:red" onclick="if(!confirm('成员删除后，相关数据无法恢复，确认删除 ${user} ?')) return false">删除</a>
+						</td>
+					</tr>
+					% endfor
+				</tbody>
+			</table>
+		</div> 
+	</div>
+</div>
+
+</%def>

@@ -1,0 +1,50 @@
+## -*- coding: utf-8 -*-
+<%inherit file="base.html" />
+
+<!-- outfile -->
+<%def name="outfile()"></%def> 
+
+<!-- the side item -->
+<%def name="sideitem()"></%def>
+
+<!-- the main content -->
+<%def name="main()">
+<%
+	from monkey.apps.admin import models as am
+	user = request.session['username']
+	id = am.User.objects.get(usm = user).id
+	gid = am.User.objects.get(usm = user).group
+	rename = am.User.objects.get(usm = user).rename
+	users = am.User.objects.all()
+%>
+<div style='margin-left:150px;'>
+	<ul class="member-list">
+		%for item in users:
+			%if mem.id == item.id:
+				<li><a href="/user/${item.id}" style="text-decoration:underline;font-weight:bold;color:#f30">${item}</a></li>
+				%else:
+				<li><a href="/user/${item.id}">${item}</a></li>
+			%endif
+		%endfor
+	</ul>
+	<div class="member-details">
+		<p><strong>姓名：</strong>${mem}
+		%if gid.access == 1:
+			<a href="/adduser/${mem.id}" style="margin-left:10px">编辑</a>
+		%endif
+		</p>
+		<p><strong>用户名：</strong>${mem.usm}</p>
+		<p><strong>Email：</strong>${mem.email}</p>
+		<p><strong>用户组：</strong>${mem.group}</p>
+		<p><strong>参与的项目：</strong>
+		%if len(project) == 0:
+			<span>暂无参与的项目</span>
+		%else:
+			% for item in project:
+			<a href="/project/${item.project.id}">${item.project}<span style="color:#f00">(${item.project.status.local_zh})</span></a>
+			% endfor
+		%endif
+		</p>
+	</div>
+</div>
+</%def>
