@@ -230,16 +230,16 @@ def error(request):
 def view(request,p='',tpl=''):
     template = 'www/' + p + '/' + tpl + '.html'
     dever = [i for i in am.User.objects.all() if i.group.id == 2]
-    tlist = {i.usm:'www/base/_' + i.usm + '.html' for i in dever}
-    csslist = ['/static/base/' + 'css/_' + i.usm + '.css' for i in dever ]
-    jslist = ['/static/base/' + 'js/_' + i.usm + '.js' for i in dever ]
+    tlist = {i.usm:Global.project_dir + 'base/_' + i.usm + '.html' for i in dever}
+    csslist = ['/static_url/base/' + 'css/_' + i.usm + '.css' for i in dever ]
+    jslist = ['/static_url/base/' + 'js/_' + i.usm + '.js' for i in dever ]
     mem = [i for i in am.Project.objects.get(enname = p).member.all() if i.group.id == 2]
-    mlist = {f.usm:'www/' + p + '/_' + f.usm + '.html' for f in mem}
+    mlist = {f.usm:Global.project_dir + p + '/_' + f.usm + '.html' for f in mem}
     if p != 'base':
         basehtml = getpage(True,**tlist)
         #mlist = ['www/' + p + '/_' + f.usm + '.html' for f in mem]
-        csslist.extend(['/static/' + p + '/css/_' + i.usm + '.css' for i in mem])
-        jslist.extend(['/static/' + p + '/js/_' + i.usm + '.js' for i in mem])
+        csslist.extend(['/static_url/' + p + '/css/_' + i.usm + '.css' for i in mem])
+        jslist.extend(['/static_url/' + p + '/js/_' + i.usm + '.js' for i in mem])
     else:
         basehtml = ''
         #mem = [i for i in am.User.objects.all() if i.group.id == 2]
